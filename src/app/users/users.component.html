@@ -1,0 +1,54 @@
+<h1>{{ title }}</h1>
+
+<form [formGroup]="profileForm" (ngSubmit)="addUser()" class="flex flex-column">
+  <div>
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName" />
+  </div>
+  <div>
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName" />
+  </div>
+  <div>
+    <label for="password">Hasło: </label>
+    <input id="password" type="text" formControlName="password" />
+  </div>
+  <div>
+    <label for="confirmPassword">Hasło: </label>
+    <input
+      id="confirm-password"
+      type="text"
+      formControlName="confirmPassword"
+    />
+  </div>
+  <ng-container formArrayName="adresses">
+    <button (click)="addAdress()">Dodaj adres</button>
+    <ng-container *ngFor="let adminForm of adresses.controls; let i = index">
+      <div [formGroupName]="i" class="flex flex-column">
+        <label for="street">Ulica: </label>
+        <input
+          formControlName="street"
+          id="{{ 'street' + i }}"
+          type="string"
+          placeholder="Ulica"
+        />
+        <label for="zip">Kod pocztowy: </label>
+        <input
+          formControlName="zip"
+          id="{{ 'zip' + i }}"
+          type="string"
+          placeholder="Kod pocztowy"
+        />
+        <label for="city">Miasto: </label>
+        <input
+          formControlName="city"
+          id="{{ 'city' + i }}"
+          type="string"
+          placeholder="Miasto"
+        />
+        <button type="button" (click)="deleteAdress(i)">X</button>
+      </div>
+    </ng-container>
+  </ng-container>
+  <button type="submit">Zapisz</button>
+</form>

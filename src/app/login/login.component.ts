@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           console.log('Przenoszę');
           this.authService.setLoginStatus(true);
-          this.router.navigate(['addUser']);
-          console.log('przenoszę addUser');
+          this.router.navigate(['users']);
+          console.log('przenoszę users');
         } else {
           alert('Zły login/hasło');
         }

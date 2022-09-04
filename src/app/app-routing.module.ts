@@ -1,4 +1,5 @@
-import { AddUserComponent } from './addUser/addUser.component';
+import { TestComponent } from './test/test.component';
+import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,9 +9,16 @@ import { AuthGuard } from './auth.guards';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: 'addUser',
-    component: AddUserComponent,
+    path: 'users',
+    component: UsersComponent,
     canActivate: [AuthGuard],
+    title: 'Użytkownicy',
+  },
+  {
+    path: 'test',
+    component: TestComponent,
+    canActivate: [AuthGuard],
+    title: 'test',
   },
   {
     path: '',
