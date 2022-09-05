@@ -1,4 +1,3 @@
-import { TestComponent } from './test/test.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -13,12 +12,6 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [AuthGuard],
     title: 'Użytkownicy',
-  },
-  {
-    path: 'test',
-    component: TestComponent,
-    canActivate: [AuthGuard],
-    title: 'test',
   },
   {
     path: '',
