@@ -9,36 +9,17 @@
     <div>
       <label for="first-name">First Name: </label>
       <input id="first-name" type="text" formControlName="firstName" />
-      <div
-        *ngIf="
-          profileForm.get('first-name')?.invalid &&
-          profileForm.get('first-name')?.errors &&
-          (profileForm.get('first-name')?.dirty ||
-            profileForm.get('first-name')?.touched)
-        "
-      >
-        <small
-          class="text-danger"
-          *ngIf="profileForm.get('first-name')?.hasError('required')"
-        >
-          This field is required.
-        </small>
-
-        <small
-          class="text-danger"
-          *ngIf="profileForm.get('first-name')?.hasError('maxlength')"
-        >
-          Za dużo znaków
-        </small>
-      </div>
+      <print-error [control]="profileForm.get('firstName')"></print-error>
     </div>
     <div>
       <label for="last-name">Last Name: </label>
       <input id="last-name" type="text" formControlName="lastName" />
+      <print-error [control]="profileForm.get('lastName')"></print-error>
     </div>
     <div>
       <label for="password">Hasło: </label>
       <input id="password" type="text" formControlName="password" />
+      <print-error [control]="profileForm.get('password')"></print-error>
     </div>
     <div>
       <label for="confirmPassword">Hasło: </label>
@@ -47,6 +28,15 @@
         type="text"
         formControlName="confirmPassword"
       />
+      <div
+        *ngIf="
+          (profileForm.get('confirmPassword')?.dirty ||
+            profileForm.get('confirmPassword')?.touched) &&
+          checkPasswords(profileForm)
+        "
+      >
+        <small>Hasła nie są jednakowe</small>
+      </div>
     </div>
     <button (click)="addAdress()">Dodaj adres</button>
     <ng-container formArrayName="adresses">
@@ -59,6 +49,9 @@
             type="string"
             placeholder="Ulica"
           />
+          <print-error
+            [control]="adresses.controls[i].get('street')"
+          ></print-error>
           <label for="zip">Kod pocztowy: </label>
           <input
             formControlName="zip"
@@ -66,6 +59,9 @@
             type="string"
             placeholder="Kod pocztowy"
           />
+          <print-error
+            [control]="adresses.controls[i].get('zip')"
+          ></print-error>
           <label for="city">Miasto: </label>
           <input
             formControlName="city"
@@ -73,6 +69,9 @@
             type="string"
             placeholder="Miasto"
           />
+          <print-error
+            [control]="adresses.controls[i].get('city')"
+          ></print-error>
           <button type="button" (click)="deleteAdress(i)">X</button>
         </div>
       </ng-container>
@@ -80,56 +79,3 @@
     <button type="submit">Zapisz</button>
   </form>
 </div>
-
-<!-- <form [formGroup]="profileForm" (ngSubmit)="addUser()" class="flex flex-column"> -->
-<!-- <div>
-    <label for="first-name">First Name: </label>
-    <input id="first-name" type="text" formControlName="firstName" />
-  </div>
-  <div>
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName" />
-  </div>
-  <div>
-    <label for="password">Hasło: </label>
-    <input id="password" type="text" formControlName="password" />
-  </div>
-  <div>
-    <label for="confirmPassword">Hasło: </label>
-    <input
-      id="confirm-password"
-      type="text"
-      formControlName="confirmPassword"
-    />
-  </div> -->
-<!-- <button (click)="addAdress()">Dodaj adres</button> -->
-<!-- <ng-container formArrayName="adresses">
-    <ng-container *ngFor="let adminForm of adresses.controls; let i = index">
-      <div [formGroupName]="i" class="flex flex-column">
-        <label for="street">Ulica: </label>
-        <input
-          formControlName="street"
-          id="{{ 'street' + i }}"
-          type="string"
-          placeholder="Ulica"
-        />
-        <label for="zip">Kod pocztowy: </label>
-        <input
-          formControlName="zip"
-          id="{{ 'zip' + i }}"
-          type="string"
-          placeholder="Kod pocztowy"
-        />
-        <label for="city">Miasto: </label>
-        <input
-          formControlName="city"
-          id="{{ 'city' + i }}"
-          type="string"
-          placeholder="Miasto"
-        />
-        <button type="button" (click)="deleteAdress(i)">X</button>
-      </div>
-    </ng-container>
-  </ng-container> -->
-<!-- <button type="submit">Zapisz</button> -->
-<!-- </form> -->

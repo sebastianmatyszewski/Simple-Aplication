@@ -1,0 +1,12 @@
+<div
+  class="text-danger"
+  *ngIf="control && control.errors && (control.dirty || control.touched)"
+>
+  <div *ngIf="control.errors.required">
+    <small>To pole jest wymagane</small>
+  </div>
+
+  <div *ngIf="control.errors.minLength">
+    <small>Zbyt długa nazwa</small>
+  </div>
+</div>
