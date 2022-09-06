@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export enum ROLE {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+}
+
+export interface Role {
+  role: ROLE;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -25,6 +34,18 @@ export class AuthService {
   get LoginStatus() {
     return JSON.parse(
       localStorage.getItem('loggedIn') || this.loggedInStatus.toString()
+    );
+  }
+
+  setRole(role: Role) {
+    localStorage.setItem('role', JSON.stringify(role));
+  }
+
+  get Role() {
+    console.log(localStorage.getItem('role'));
+
+    return JSON.parse(
+      localStorage.getItem('role') || JSON.stringify(ROLE.USER)
     );
   }
 }

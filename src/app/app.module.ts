@@ -4,12 +4,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrintError } from './print-error/print-error.component';
+import { HeaderInterceptor } from './token.interceptor';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UsersComponent, PrintError],
+  declarations: [AppComponent, LoginComponent, UsersComponent, PrintError, MenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -17,7 +19,9 @@ import { PrintError } from './print-error/print-error.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

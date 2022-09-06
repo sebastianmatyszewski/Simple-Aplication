@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           console.log('Przenoszę');
           this.authService.setLoginStatus(true);
+          this.authService.setRole(user.role);
           this.router.navigate(['users']);
-          console.log('przenoszę users');
         } else {
           alert('Zły login/hasło');
         }
@@ -49,5 +49,8 @@ export class LoginComponent implements OnInit {
         alert('Something went wrong');
       }
     );
+  }
+  addToken() {
+    localStorage.setItem('token', 'fewt4rt4rtg4g4egvdfgvre4t4tegfdgdf');
   }
 }

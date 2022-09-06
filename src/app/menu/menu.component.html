@@ -1,0 +1,22 @@
+<nav>
+  <ul>
+    <li *ngFor="let item of menu">
+      <i class="item.icon"></i>
+      <a [href]="item.url">
+        <span>{{ item.title }}</span></a
+      >
+      <span> {{ item.description }}</span>
+      <ng-container *ngIf="item.childrens">
+        <ul>
+          <li *ngFor="let subitem of item.childrens">
+            <i class="subitem.icon"></i>
+            <a [href]="subitem.url">
+              <span>{{ subitem.title }}</span></a
+            >
+            <span> {{ subitem.description }}</span>
+          </li>
+        </ul>
+      </ng-container>
+    </li>
+  </ul>
+</nav>

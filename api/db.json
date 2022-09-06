@@ -3,7 +3,15 @@
     {
       "login": "admin",
       "password": "admin",
-      "username": "myusername",
+      "role": "ADMIN",
+      "username": "Admin",
+      "id": 1
+    },
+    {
+      "login": "seba",
+      "password": "seba",
+      "role": "USER",
+      "username": "Sebastian",
       "id": 1
     }
   ]

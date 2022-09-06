@@ -1,3 +1,4 @@
+import { MenuComponent } from './menu/menu.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,14 @@ const routes: Routes = [
     component: UsersComponent,
     canActivate: [AuthGuard],
     title: 'Użytkownicy',
+    data: { roles: ['ADMIN'] },
+    // data: { roles: ['ADMIN', 'USER'] },
+  },
+  {
+    path: 'menu',
+    component: MenuComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN', 'USER'] },
   },
   {
     path: '',
