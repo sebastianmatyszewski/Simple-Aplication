@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           console.log('Przenoszę');
           this.authService.setLoginStatus(true);
           this.authService.setRole(user.role);
-          this.router.navigate(['users']);
+          this.router.navigate(['question']);
         } else {
           alert('Zły login/hasło');
         }

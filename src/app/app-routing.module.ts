@@ -1,3 +1,4 @@
+import { QuestionComponent } from './question/question.component';
 import { MenuComponent } from './menu/menu.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,12 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN', 'USER'] },
+  },
+  {
+    path: 'question',
+    component: QuestionComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ADMIN', 'USER'] },
   },
